@@ -13,6 +13,5 @@ export class AlbumComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.album = albumData;
-    console.log(this.album);
   }
 }
