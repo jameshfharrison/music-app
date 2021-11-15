@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import data from '../data/NewReleasesAlbums.json';
+//import data from '../data/NewReleasesAlbums.json';
+import { MusicDataService } from '../music-data.service';
 
 @Component({
   selector: 'app-new-releases-component',
@@ -7,10 +8,16 @@ import data from '../data/NewReleasesAlbums.json';
   styleUrls: ['./new-releases-component.component.css'],
 })
 export class NewReleasesComponentComponent implements OnInit {
-  releases = new Array();
-  constructor() {}
+  releases: any;
+  private releaseSub: any;
+  constructor(private musicData: MusicDataService) {}
 
   ngOnInit(): void {
-    this.releases = data.albums.items;
+    this.releaseSub = this.musicData.getNewReleases().subscribe((data) => {
+      this.releases = data;
+    });
+  }
+  ngOnDestroy() {
+    this.releaseSub.unsubscribe();
   }
 }
