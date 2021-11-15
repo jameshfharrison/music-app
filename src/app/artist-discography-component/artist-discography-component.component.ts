@@ -10,13 +10,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./artist-discography-component.component.css'],
 })
 export class ArtistDiscographyComponentComponent implements OnInit {
-  albums: any = new Array();
+  albums: any;
   artist: any;
   id: any;
 
   private artistRoute: any;
   private artistId: any;
   private artistDiscography: any;
+  
   constructor(
     private musicData: MusicDataService,
     private route: ActivatedRoute
@@ -27,7 +28,7 @@ export class ArtistDiscographyComponentComponent implements OnInit {
       this.id = params['id'];
     });
 
-    this.artistId = this.musicData.getAlbumById(this.id).subscribe((data) => {
+    this.artistId = this.musicData.getArtistById(this.id).subscribe((data) => {
       this.artist = data;
     });
 
@@ -42,14 +43,6 @@ export class ArtistDiscographyComponentComponent implements OnInit {
         );
       });
 
-    // this.albums = this.albumData.items.filter(
-    //   (curValue: any, index: any, self: any) =>
-    //     self.findIndex(
-    //       (t: any) => t.name.toUpperCase() === curValue.name.toUpperCase()
-    //     ) === index
-    // );
-
-    // this.artist = artistData;
   }
 
   ngOnDestroy() {

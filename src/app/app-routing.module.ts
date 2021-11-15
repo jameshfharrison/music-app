@@ -9,7 +9,7 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
 const routes: Routes = [
   { path: 'newReleases', component: NewReleasesComponentComponent },
   { path: 'artist/:id', component: ArtistDiscographyComponentComponent },
-  { path: 'album', component: AlbumComponentComponent },
+  { path: 'album/:id', component: AlbumComponentComponent },
   { path: 'about', component: AboutComponentComponent },
   { path: '', redirectTo: '/newReleases', pathMatch: 'full' },
   { path: '**', component: NotFoundComponentComponent },

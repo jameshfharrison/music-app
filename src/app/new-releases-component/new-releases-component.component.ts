@@ -14,7 +14,7 @@ export class NewReleasesComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.releaseSub = this.musicData.getNewReleases().subscribe((data) => {
-      this.releases = data;
+      this.releases = data.albums.items;
     });
   }
   ngOnDestroy() {
