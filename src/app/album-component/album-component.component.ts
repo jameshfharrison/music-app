@@ -9,28 +9,41 @@ import { MusicDataService } from '../music-data.service';
   templateUrl: './album-component.component.html',
   styleUrls: ['./album-component.component.css'],
 })
-
 export class AlbumComponentComponent implements OnInit {
   album: any;
   id: any;
   private albumRoute: any;
   private searchAlbum: any;
-  constructor(private snackBar: MatSnackBar, private route: ActivatedRoute, private musicData: MusicDataService) {}
+
+  constructor(
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private musicData: MusicDataService
+  ) {}
 
   ngOnInit(): void {
-	
-	  this.albumRoute = this.route.params.subscribe((params) => {
-		  this.id = params['id'];
-	  });
+    this.albumRoute = this.route.params.subscribe((params) => {
+      this.id = params['id'];
+    });
 
-	  this.searchAlbum = this.musicData.getAlbumById(this.id).subscribe((data) => {
-		  this.album = data;
-      console.log(this.album);
-	  }); 
+    this.searchAlbum = this.musicData
+      .getAlbumById(this.id)
+      .subscribe((data) => {
+        this.album = data;
+        console.log(this.album);
+      });
+  }
+
+  addToFavourites(id: any) {
+    if (this.musicData.addToFavourites(id)) {
+      this.snackBar.open('Adding to Favourites...', 'Done', {
+        duration: 1500,
+      });
+    }
   }
 
   ngOnDestroy() {
-	this.albumRoute.unsubscribe();
-	this.searchAlbum.unsubscribe();
+    this.albumRoute.unsubscribe();
+    this.searchAlbum.unsubscribe();
   }
 }
