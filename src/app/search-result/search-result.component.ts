@@ -23,7 +23,6 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
     this.routeToQuery = this.route.queryParams.subscribe((params) => {
       this.searchQuery = params['q'];
-      console.log(params);
     });
 
     this.artistSearch = this.musicData

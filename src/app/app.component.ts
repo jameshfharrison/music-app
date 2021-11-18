@@ -23,7 +23,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.searchString = '';
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      //code to ensure that you can search multiple times.
+      //ensures that you can search multiple times without refreshing the page.
       return false;
     };
   }
