@@ -6,7 +6,7 @@
  *
  * Name: James Harrison Student ID: 100608207 Date: November 16, 2021
  *
- * Angular App (Deployed) Link: ________________________________
+ * Angular App (Deployed) Link: https://zealous-archimedes-09688b.netlify.app/
  *
  * User API (Heroku) Link: https://web422-spotify-user-api.herokuapp.com
  *
