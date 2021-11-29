@@ -22,15 +22,28 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
 import { NewReleasesComponentComponent } from './new-releases-component/new-releases-component.component';
 import { AlbumComponentComponent } from './album-component/album-component.component';
 import { ArtistDiscographyComponentComponent } from './artist-discography-component/artist-discography-component.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FavouritesComponent } from './favourites/favourites.component';
-
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { InterceptTokenService } from './intercept-token.service';
 
 @NgModule({
-  declarations: [AppComponent, AboutComponentComponent, NotFoundComponentComponent, NewReleasesComponentComponent, AlbumComponentComponent, ArtistDiscographyComponentComponent, SearchResultComponent, FavouritesComponent],
+  declarations: [
+    AppComponent,
+    AboutComponentComponent,
+    NotFoundComponentComponent,
+    NewReleasesComponentComponent,
+    AlbumComponentComponent,
+    ArtistDiscographyComponentComponent,
+    SearchResultComponent,
+    FavouritesComponent,
+    RegisterComponent,
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,7 +64,13 @@ import { FavouritesComponent } from './favourites/favourites.component';
     FormsModule,
     MatSnackBarModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptTokenService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
